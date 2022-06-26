@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\UsersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,16 @@ Route::group(['middleware' => 'auth'], function(){
         Route::post('/profile/update/', 'update')->name('user.profile.update');
         Route::get('/profile/change-password', 'editPassword')->name('user.change.password');
         Route::post('/profile/update-password', 'updatePassword')->name('user.update.password');
+    });
+
+    // Users Profile Routes
+    Route::controller(SupplierController::class)->group(function () {
+        Route::get('/suppliers', 'index')->name('admin.suppliers');
+        Route::get('/supplier/create', 'create')->name('admin.supplier.create');
+        Route::post('/supplier/store', 'store')->name('admin.supplier.store');
+        Route::get('/supplier/edit/{id}', 'edit')->name('admin.supplier.edit');
+        Route::post('/supplier/update/{id}', 'update')->name('admin.supplier.update');
+        Route::post('/supplier/delete', 'delete')->name('admin.supplier.delete');
     });
     
 

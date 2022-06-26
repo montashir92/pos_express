@@ -38,19 +38,20 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+
+                <li class="nav-item @yield('entry')">
+                    <a href="#" class="nav-link @yield('entry')">
                         <i class="nav-icon fas fa-tree"></i>
                         <p>
-                            UI Elements
+                            Entry Module
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/UI/general.html" class="nav-link">
+                            <a href="{{ route('admin.suppliers') }}" class="nav-link @yield('supplier')">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>General</p>
+                                <p>Supplier</p>
                             </a>
                         </li>
 
