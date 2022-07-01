@@ -55,6 +55,13 @@
                             </a>
                         </li>
 
+                        <li class="nav-item">
+                            <a href="{{ route('admin.units') }}" class="nav-link @yield('unit')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Unit</p>
+                            </a>
+                        </li>
+
                     </ul>
                 </li>
                 <li class="nav-item">

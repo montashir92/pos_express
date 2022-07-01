@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SupplierController;
+use App\Http\Controllers\Admin\UnitController;
 use App\Http\Controllers\Admin\UsersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -38,7 +39,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::post('/profile/update-password', 'updatePassword')->name('user.update.password');
     });
 
-    // Users Profile Routes
+    // Supplier Routes
     Route::controller(SupplierController::class)->group(function () {
         Route::get('/suppliers', 'index')->name('admin.suppliers');
         Route::get('/supplier/create', 'create')->name('admin.supplier.create');
@@ -46,6 +47,16 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/supplier/edit/{id}', 'edit')->name('admin.supplier.edit');
         Route::post('/supplier/update/{id}', 'update')->name('admin.supplier.update');
         Route::post('/supplier/delete', 'delete')->name('admin.supplier.delete');
+    });
+
+    // Unit Routes
+    Route::controller(UnitController::class)->group(function () {
+        Route::get('/units', 'index')->name('admin.units');
+        Route::get('/unit/create', 'create')->name('admin.unit.create');
+        Route::post('/unit/store', 'store')->name('admin.unit.store');
+        Route::get('/unit/edit/{id}', 'edit')->name('admin.unit.edit');
+        Route::post('/unit/update/{id}', 'update')->name('admin.unit.update');
+        Route::post('/unit/delete', 'delete')->name('admin.unit.delete');
     });
     
 
