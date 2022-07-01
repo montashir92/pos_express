@@ -62,6 +62,13 @@
                             </a>
                         </li>
 
+                        <li class="nav-item">
+                            <a href="{{ route('admin.categories') }}" class="nav-link @yield('category')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Category</p>
+                            </a>
+                        </li>
+
                     </ul>
                 </li>
                 <li class="nav-item">

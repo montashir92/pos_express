@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SupplierController;
@@ -57,6 +58,16 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/unit/edit/{id}', 'edit')->name('admin.unit.edit');
         Route::post('/unit/update/{id}', 'update')->name('admin.unit.update');
         Route::post('/unit/delete', 'delete')->name('admin.unit.delete');
+    });
+
+    // Category Routes
+    Route::controller(CategoryController::class)->group(function () {
+        Route::get('/categories', 'index')->name('admin.categories');
+        Route::get('/category/create', 'create')->name('admin.category.create');
+        Route::post('/category/store', 'store')->name('admin.category.store');
+        Route::get('/category/edit/{id}', 'edit')->name('admin.category.edit');
+        Route::post('/category/update/{id}', 'update')->name('admin.category.update');
+        Route::post('/category/delete', 'delete')->name('admin.category.delete');
     });
     
 

@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Supplier;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class SupplierController extends Controller
+class CategoryController extends Controller
 {
     
     public function index()
     {
-        $supplier = Supplier::all();
-        return view('admin.pages.suppliers.index', compact('supplier'));
+        $category = Category::all();
+        return view('admin.pages.category.index', compact('category'));
     }
 
     /**
@@ -26,22 +26,16 @@ class SupplierController extends Controller
     {
         $request->validate([
             'name' => 'required|max:60',
-            'mobile' => 'required|min:11',
-            'email' => 'required|email',
-            'address' => 'required',
         ]);
 
         try {
-            $supplier = new Supplier();
-            $supplier->name = $request->name;
-            $supplier->mobile = $request->mobile;
-            $supplier->email = $request->email;
-            $supplier->address = $request->address;
-            $supplier->created_by = Auth::user()->id;
-            $supplier->save();
+            $category = new Category();
+            $category->name = $request->name;
+            $category->created_by = Auth::user()->id;
+            $category->save();
 
             $notification=array(
-                'message'=>'Supplier Craeted Succefully..',
+                'message'=>'category Craeted Succefully..',
                 'alert-type'=>'success'
             );
             return Redirect()->back()->with($notification);
@@ -63,9 +57,9 @@ class SupplierController extends Controller
      */
     public function edit($id)
     {
-        $editData = Supplier::find($id);
-        $supplier = Supplier::all();
-        return view('admin.pages.suppliers.index', compact('editData', 'supplier'));
+        $category = Category::all();
+        $categoryData = Category::find($id);
+        return view('admin.pages.category.index', compact('category', 'categoryData'));
     }
 
     /**
@@ -78,27 +72,28 @@ class SupplierController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|max:60',
-            'mobile' => 'required|min:11',
-            'email' => 'required|email',
-            'address' => 'required',
+            'name' => 'max:60',
         ]);
 
-        $supplier = Supplier::find($id);
-        $supplier->name = $request->name;
-        $supplier->mobile = $request->mobile;
-        $supplier->email = $request->email;
-        $supplier->address = $request->address;
-        $supplier->created_by = Auth::user()->id;
-        $supplier->save();
+        try {
+            $category = Category::find($id);
+            $category->name = $request->name;
+            $category->updated_by = Auth::user()->id;
+            $category->save();
 
-        $notification=array(
-            'message'=>'Supplier Updated Succefully..',
-            'alert-type'=>'success'
-        );
-        return Redirect()->route('admin.suppliers')->with($notification);
+            $notification=array(
+                'message'=>'Category Updated Succefully..',
+                'alert-type'=>'success'
+            );
+            return Redirect()->route('admin.categories')->with($notification);
 
-        
+        } catch (\Exception $e) {
+            $notification=array(
+                'message'=>'Something went wrong!',
+                'alert-type'=>'error'
+            );
+            return Redirect()->back()->with($notification);
+        }
     }
 
     /**
@@ -109,13 +104,13 @@ class SupplierController extends Controller
      */
     public function delete(Request $request)
     {
-        $supplier = Supplier::find($request->id);
-        if(!is_null($supplier)){
-            $supplier->delete();
+        $category = Category::find($request->id);
+        if(!is_null($category)){
+            $category->delete();
         }
 
         $notification=array(
-            'message'=>'Supplier Deleted Succefully..',
+            'message'=>'Category Deleted Succefully..',
             'alert-type'=>'success'
         );
         return Redirect()->back()->with($notification);
