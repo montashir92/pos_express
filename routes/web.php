@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\UnitController;
@@ -44,7 +45,6 @@ Route::group(['middleware' => 'auth'], function(){
     // Supplier Routes
     Route::controller(SupplierController::class)->group(function () {
         Route::get('/suppliers', 'index')->name('admin.suppliers');
-        Route::get('/supplier/create', 'create')->name('admin.supplier.create');
         Route::post('/supplier/store', 'store')->name('admin.supplier.store');
         Route::get('/supplier/edit/{id}', 'edit')->name('admin.supplier.edit');
         Route::post('/supplier/update/{id}', 'update')->name('admin.supplier.update');
@@ -54,7 +54,6 @@ Route::group(['middleware' => 'auth'], function(){
     // Unit Routes
     Route::controller(UnitController::class)->group(function () {
         Route::get('/units', 'index')->name('admin.units');
-        Route::get('/unit/create', 'create')->name('admin.unit.create');
         Route::post('/unit/store', 'store')->name('admin.unit.store');
         Route::get('/unit/edit/{id}', 'edit')->name('admin.unit.edit');
         Route::post('/unit/update/{id}', 'update')->name('admin.unit.update');
@@ -64,7 +63,6 @@ Route::group(['middleware' => 'auth'], function(){
     // Category Routes
     Route::controller(CategoryController::class)->group(function () {
         Route::get('/categories', 'index')->name('admin.categories');
-        Route::get('/category/create', 'create')->name('admin.category.create');
         Route::post('/category/store', 'store')->name('admin.category.store');
         Route::get('/category/edit/{id}', 'edit')->name('admin.category.edit');
         Route::post('/category/update/{id}', 'update')->name('admin.category.update');
@@ -74,11 +72,20 @@ Route::group(['middleware' => 'auth'], function(){
     // Customer Routes
     Route::controller(CustomerController::class)->group(function () {
         Route::get('/customers', 'index')->name('admin.customers');
-        Route::get('/customer/create', 'create')->name('admin.customer.create');
         Route::post('/customer/store', 'store')->name('admin.customer.store');
         Route::get('/customer/edit/{id}', 'edit')->name('admin.customer.edit');
         Route::post('/customer/update/{id}', 'update')->name('admin.customer.update');
         Route::post('/customer/delete', 'delete')->name('admin.customer.delete');
+    });
+
+    // Product Routes
+    Route::controller(ProductController::class)->group(function () {
+        Route::get('/products', 'index')->name('admin.products');
+        Route::get('/product/create', 'create')->name('admin.product.create');
+        Route::post('/product/store', 'store')->name('admin.product.store');
+        Route::get('/product/edit/{id}', 'edit')->name('admin.product.edit');
+        Route::post('/product/update/{id}', 'update')->name('admin.product.update');
+        Route::post('/product/delete', 'delete')->name('admin.product.delete');
     });
     
     
