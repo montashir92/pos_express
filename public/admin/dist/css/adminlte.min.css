@@ -1785,8 +1785,8 @@ pre code {
 
 .table td,
 .table th {
-    padding: .75rem;
-    vertical-align: top;
+    padding: 5px;
+    /* vertical-align: top; */
     border-top: 1px solid #dee2e6
 }
 
@@ -2214,7 +2214,7 @@ select.form-control:focus::-ms-value {
 
 .col-form-label {
     padding-top: calc(.375rem + 1px);
-    padding-bottom: calc(.375rem + 1px);
+    /* padding-bottom: calc(.375rem + 1px); */
     margin-bottom: 0;
     font-size: inherit;
     line-height: 1.5
@@ -2279,7 +2279,7 @@ textarea.form-control {
 }
 
 .form-group {
-    margin-bottom: 1rem
+    margin-bottom: 5px
 }
 
 .form-text {

@@ -110,7 +110,7 @@ class SupplierController extends Controller
     public function delete(Request $request)
     {
         $supplier = Supplier::find($request->id);
-        if(!is_null($supplier)){
+        if($supplier){
             $supplier->delete();
         }
 

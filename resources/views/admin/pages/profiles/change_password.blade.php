@@ -44,7 +44,7 @@ active
                   <hr>
 
                   <a href="{{ route('users.profiles') }}" class="btn btn-primary btn-block"><b><i class="fas fa-home"></i> Home</b></a>
-                  <a href="#" class="btn btn-primary btn-block"><b><i class="fas fa-lock"></i> Change Password</b></a>
+                  <a href="{{ route('user.change.password') }}" class="btn btn-primary btn-block"><b><i class="fas fa-lock"></i> Change Password</b></a>
                 </div>
                 <!-- /.card-body -->
               </div>
@@ -79,7 +79,7 @@ active
                     </div>
   
                     <div class="form-group row">
-                      <label for="inputPassword3" class="col-sm-3 col-form-label">Again New Password</label>
+                      <label for="inputPassword3" class="col-sm-3 col-form-label">Retype Password</label>
                       <div class="col-sm-9">
                         <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Confirm Password">
                       </div>

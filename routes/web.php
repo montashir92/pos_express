@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SupplierController;
@@ -69,6 +70,17 @@ Route::group(['middleware' => 'auth'], function(){
         Route::post('/category/update/{id}', 'update')->name('admin.category.update');
         Route::post('/category/delete', 'delete')->name('admin.category.delete');
     });
+
+    // Customer Routes
+    Route::controller(CustomerController::class)->group(function () {
+        Route::get('/customers', 'index')->name('admin.customers');
+        Route::get('/customer/create', 'create')->name('admin.customer.create');
+        Route::post('/customer/store', 'store')->name('admin.customer.store');
+        Route::get('/customer/edit/{id}', 'edit')->name('admin.customer.edit');
+        Route::post('/customer/update/{id}', 'update')->name('admin.customer.update');
+        Route::post('/customer/delete', 'delete')->name('admin.customer.delete');
+    });
+    
     
 
 });
